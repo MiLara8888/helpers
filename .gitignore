@@ -1,0 +1,6 @@
+__pycache__/
+settings.py
+migrations/
+media/
+build.sh
+rest.txt

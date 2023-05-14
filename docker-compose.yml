@@ -1,0 +1,28 @@
+version: "3"
+services:
+    helpers:
+        hostname: helpers_4307
+        image: dockerhub.terracorp.ru/helpers:latest
+        # volumes:
+        #     - "/mnt/websystem/log/django:/usr/src/crawler_django/log"
+        environment:
+            - DJANGO_DEBUG=0
+            - DJANGO_ALLOWED_HOSTS=*
+            # - LOG_DIR=/mnt/websystem/log
+        ports:
+            - "4307:4307"
+        restart: always
+        command: gunicorn --workers=4 --timeout 120 --bind 0.0.0.0:4307 faq.wsgi
+    helpers_2:
+        hostname: helpers_4308
+        image: dockerhub.terracorp.ru/helpers:latest
+        # volumes:
+        #     - "/mnt/websystem/log/django:/usr/src/crawler_django/log"
+        environment:
+            - DJANGO_DEBUG=0
+            - DJANGO_ALLOWED_HOSTS=*
+            # - LOG_DIR=/mnt/websystem/log
+        ports:
+            - "4308:4307"
+        restart: always
+        command: gunicorn --workers=4 --timeout 120 --bind 0.0.0.0:4307 faq.wsgi
